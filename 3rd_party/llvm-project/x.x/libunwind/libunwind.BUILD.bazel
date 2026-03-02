@@ -104,9 +104,13 @@ cc_library(
         "@llvm//platforms/config:gnu": [
             "@glibc//:gnu_libc_headers",
         ],
-        "@platforms//os:windows": [
+        "@llvm//constraints/abi:gnu": [
             "@mingw//:mingw_headers",
         ],
+        "@llvm//constraints/abi:gnullvm": [
+            "@mingw//:mingw_headers",
+        ],
+        "@llvm//constraints/abi:msvc": [],
         "@platforms//os:macos": [],
     }),
     deps = ["@compiler-rt//:sanitizers_interface_headers"],

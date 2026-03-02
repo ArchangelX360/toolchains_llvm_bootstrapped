@@ -28,7 +28,9 @@ cc_args_list(
             "//toolchain:macos_toolchain_args",
         ],
         "@platforms//os:linux": [],
-        "@platforms//os:windows": [],
+        "@platforms//os:windows": [
+            "//toolchain:windows_toolchain_args",
+        ],
         "@platforms//os:none": [],
     }),
     visibility = ["//toolchain:__subpackages__"],
@@ -100,6 +102,7 @@ cc_args_list(
         "//toolchain/runtimes/args:lsan_flags",
 
         # Common default link flags.
+        "//toolchain/args:llvm_target_for_platform_link",
         "//toolchain/args:fuse_ld",
         ":rtlib",
         ":resource_dir",

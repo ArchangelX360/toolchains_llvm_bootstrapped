@@ -109,6 +109,10 @@ use_repo(musl, "musl_libc")
 mingw = use_extension("//runtimes/mingw/extension:mingw.bzl", "mingw")
 use_repo(mingw, "mingw")
 
+msvc = use_extension("//runtimes/msvc/extension:msvc.bzl", "msvc")
+msvc.winsysroot()
+use_repo(msvc, "windows_sdk", "windows_sdk_arm64", "windows_sdk_x64")
+
 osx = use_extension("//extensions:osx.bzl", "osx")
 osx.from_archive(
     sha256 = "6a4922f89487a96d7054ec6ca5065bfddd9f1d017c74d82f1d79cecf7feb8228",
