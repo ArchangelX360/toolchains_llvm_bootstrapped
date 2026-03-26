@@ -1,0 +1,79 @@
+diff --git a/llvm/lib/Support/InitLLVM.cpp b/llvm/lib/Support/InitLLVM.cpp
+index b90f4e0..64c4fe3 100644
+--- a/llvm/lib/Support/InitLLVM.cpp
++++ b/llvm/lib/Support/InitLLVM.cpp
+@@ -17,6 +17,7 @@
+ #ifdef _WIN32
+ #include "llvm/Support/Windows/WindowsSupport.h"
+ #endif
++#include <cstdlib>
+ 
+ #if defined(HAVE_UNISTD_H)
+ #include <unistd.h>
+@@ -72,6 +73,17 @@ void CleanupStdHandles(void *Cookie) {
+ using namespace llvm;
+ using namespace llvm::sys;
+ 
++#ifdef _WIN32
++static bool isWindowsInitLLVMToggleEnabled(const char *Name) {
++  if (const char *Value = std::getenv(Name)) {
++    StringRef Toggle(Value);
++    return !Toggle.empty() && Toggle != "0";
++  }
++
++  return false;
++}
++#endif
++
+ InitLLVM::InitLLVM(int &Argc, const char **&Argv,
+                    bool InstallPipeSignalExitHandler) {
+ #ifndef NDEBUG
+@@ -80,8 +92,22 @@ InitLLVM::InitLLVM(int &Argc, const char **&Argv,
+   Initialized = true;
+ #endif
+ 
++#ifdef _WIN32
++  const bool DisableWindowsSignalHandlers =
++      isWindowsInitLLVMToggleEnabled(
++          "LLVM_INITLLVM_DISABLE_WINDOWS_SIGNAL_HANDLERS");
++  const bool DisableWindowsArgRewrite =
++      isWindowsInitLLVMToggleEnabled(
++          "LLVM_INITLLVM_DISABLE_WINDOWS_ARG_REWRITE");
++#endif
++
+   // Bring stdin/stdout/stderr into a known state.
++#ifdef _WIN32
++  if (!DisableWindowsSignalHandlers)
++    sys::AddSignalHandler(CleanupStdHandles, nullptr);
++#else
+   sys::AddSignalHandler(CleanupStdHandles, nullptr);
++#endif
+ 
+   if (InstallPipeSignalExitHandler)
+     // The pipe signal handler must be installed before any other handlers are
+@@ -92,8 +118,15 @@ InitLLVM::InitLLVM(int &Argc, const char **&Argv,
+     sys::SetOneShotPipeSignalFunction(sys::DefaultOneShotPipeSignalHandler);
+   // Initialize the stack printer after installing the one-shot pipe signal
+   // handler, so we can perform a sigaction() for SIGPIPE on Unix if requested.
++#ifdef _WIN32
++  if (!DisableWindowsSignalHandlers) {
++    StackPrinter.emplace(Argc, Argv);
++    sys::PrintStackTraceOnErrorSignal(Argv[0]);
++  }
++#else
+   StackPrinter.emplace(Argc, Argv);
+   sys::PrintStackTraceOnErrorSignal(Argv[0]);
++#endif
+   install_out_of_memory_new_handler();
+   RaiseLimits();
+ 
+@@ -124,6 +157,9 @@ InitLLVM::InitLLVM(int &Argc, const char **&Argv,
+   std::string Banner = std::string(Argv[0]) + ": ";
+   ExitOnError ExitOnErr(Banner);
+ 
++  if (DisableWindowsArgRewrite)
++    return;
++
+   ExitOnErr(errorCodeToError(windows::GetCommandLineArguments(Args, Alloc)));
+ 
+   // GetCommandLineArguments doesn't terminate the vector with a
