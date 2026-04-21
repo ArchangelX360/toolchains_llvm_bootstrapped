@@ -75,6 +75,8 @@ cc_args(
         "@windows_sdk//:winsdk_winrt_include",
     ],
     args = [
+        "/clang:-ivfsoverlay",
+        "/clang:{winsdk_vfsoverlay}",
         # using `/imsvc` instead of `/clang:-I` here otherwise we're getting linking issues like:
         # lld-link: error: undefined symbol: neon_sriiq8
         # >>> referenced by libzstd-143054927.lib(zstd_lazy.o):(ZSTD_RowFindBestMatch_noDict_4_4)
@@ -98,9 +100,11 @@ cc_args(
         "@windows_sdk//:winsdk_ucrt_include",
         "@windows_sdk//:winsdk_um_include",
         "@windows_sdk//:winsdk_winrt_include",
+        "@windows_sdk//:vfsoverlay",
     ],
     format = {
         "msvc_include": "@msvc_runtime//:msvc_include",
+        "winsdk_vfsoverlay": "@windows_sdk//:vfsoverlay",
         "winsdk_ucrt_include": "@windows_sdk//:winsdk_ucrt_include",
         "winsdk_shared_include": "@windows_sdk//:winsdk_shared_include",
         "winsdk_um_include": "@windows_sdk//:winsdk_um_include",
@@ -114,6 +118,7 @@ cc_args(
         "@rules_cc//cc/toolchains/actions:link_actions",
     ],
     args = [
+        "/vfsoverlay:{winsdk_vfsoverlay}",
         "/LIBPATH:{msvc_lib}",
         "/LIBPATH:{winsdk_ucrt_lib}",
         "/LIBPATH:{winsdk_um_lib}",
@@ -122,9 +127,11 @@ cc_args(
         "@msvc_runtime//:msvc_lib",
         "@windows_sdk//:winsdk_ucrt_lib",
         "@windows_sdk//:winsdk_um_lib",
+        "@windows_sdk//:vfsoverlay",
     ],
     format = {
         "msvc_lib": "@msvc_runtime//:msvc_lib",
+        "winsdk_vfsoverlay": "@windows_sdk//:vfsoverlay",
         "winsdk_ucrt_lib": "@windows_sdk//:winsdk_ucrt_lib",
         "winsdk_um_lib": "@windows_sdk//:winsdk_um_lib",
     },

@@ -67,7 +67,8 @@
     "https://bcr.bazel.build/modules/bazel_skylib_gazelle_plugin/1.9.0/MODULE.bazel": "6bf4bab470d2383d4eda4f7d0ccff5b8160dc0a2429e3037f9a2c573f9b7a2c0",
     "https://bcr.bazel.build/modules/bazel_skylib_gazelle_plugin/1.9.0/source.json": "02385c6bf129986a5675bd04658b2c2bb6249db51106bb20db7723a56eb03302",
     "https://bcr.bazel.build/modules/bazelrc-preset.bzl/1.6.0/MODULE.bazel": "11bc946a2e1a9c1bea066e44a704091b482e6049164b75b2381e8419bf055cf1",
-    "https://bcr.bazel.build/modules/bazelrc-preset.bzl/1.6.0/source.json": "ad6cee6b42b5def78f6b3082c0bd7041a330003cbace330aaf1d3f94a122c48b",
+    "https://bcr.bazel.build/modules/bazelrc-preset.bzl/1.9.2/MODULE.bazel": "9354bc3d91ee66e804642419af601b853e3228f6493f9263d51c5cd7b25c2a55",
+    "https://bcr.bazel.build/modules/bazelrc-preset.bzl/1.9.2/source.json": "d78791185eae5a8af3a5793f312f0ba21185bd8a115b9419fb99527d03ab112b",
     "https://bcr.bazel.build/modules/buildifier_prebuilt/8.5.1.2/MODULE.bazel": "9a6e0a2e87d1e3da679e157da5192ea351d5739ca1ff51831c2b736d5b6034de",
     "https://bcr.bazel.build/modules/buildifier_prebuilt/8.5.1.2/source.json": "33e11b3bf11e39cb762480a7e6ea1d24d044636135cdd8b8e74b07ebcd3b8d8b",
     "https://bcr.bazel.build/modules/buildozer/8.2.1/MODULE.bazel": "61e9433c574c2bd9519cad7fa66b9c1d2b8e8d5f3ae5d6528a2c2d26e68d874d",
@@ -109,7 +110,8 @@
     "https://bcr.bazel.build/modules/nlohmann_json/3.12.0.bcr.1/source.json": "93f82a5ae985eb935c539bfee95e04767187818189241ac956f3ccadbdb8fb02",
     "https://bcr.bazel.build/modules/package_metadata/0.0.2/MODULE.bazel": "fb8d25550742674d63d7b250063d4580ca530499f045d70748b1b142081ebb92",
     "https://bcr.bazel.build/modules/package_metadata/0.0.5/MODULE.bazel": "ef4f9439e3270fdd6b9fd4dbc3d2f29d13888e44c529a1b243f7a31dfbc2e8e4",
-    "https://bcr.bazel.build/modules/package_metadata/0.0.5/source.json": "2326db2f6592578177751c3e1f74786b79382cd6008834c9d01ec865b9126a85",
+    "https://bcr.bazel.build/modules/package_metadata/0.0.7/MODULE.bazel": "7adb03933fc8401f495800cf4eafcff0edc6da0ff55c7db223ef69d19f689486",
+    "https://bcr.bazel.build/modules/package_metadata/0.0.7/source.json": "50639625e937b56115012674c797cca7a05a96b4878c87d803c13dc2b31de8a0",
     "https://bcr.bazel.build/modules/platforms/0.0.10/MODULE.bazel": "8cb8efaf200bdeb2150d93e162c40f388529a25852b332cec879373771e48ed5",
     "https://bcr.bazel.build/modules/platforms/0.0.11/MODULE.bazel": "0daefc49732e227caa8bfa834d65dc52e8cc18a2faf80df25e8caea151a9413f",
     "https://bcr.bazel.build/modules/platforms/0.0.4/MODULE.bazel": "9b328e31ee156f53f3c416a64f8491f7eb731742655a47c9eec4703a71644aee",
@@ -256,6 +258,8 @@
     "https://bcr.bazel.build/modules/tar.bzl/0.9.0/MODULE.bazel": "452a22d7f02b1c9d7a22ab25edf20f46f3e1101f0f67dc4bfbf9a474ddf02445",
     "https://bcr.bazel.build/modules/tar.bzl/0.9.0/source.json": "c732760a374831a2cf5b08839e4be75017196b4d796a5aa55235272ee17cd839",
     "https://bcr.bazel.build/modules/upb/0.0.0-20220923-a547704/MODULE.bazel": "7298990c00040a0e2f121f6c32544bab27d4452f80d9ce51349b1a28f3005c43",
+    "https://bcr.bazel.build/modules/windows_support/0.1.1/MODULE.bazel": "e9e6392f068efcd890b968e49eabfc67dc7cd3c4d03a19c9a13a6fcc8e38978c",
+    "https://bcr.bazel.build/modules/windows_support/0.1.1/source.json": "7632e21f4fee9e4a6cd5c38231e3c136bbca3f3fabbaef659980bc6742fa7339",
     "https://bcr.bazel.build/modules/with_cfg.bzl/0.12.0/MODULE.bazel": "b573395fe63aef4299ba095173e2f62ccfee5ad9bbf7acaa95dba73af9fc2b38",
     "https://bcr.bazel.build/modules/with_cfg.bzl/0.12.0/source.json": "3f3fbaeafecaf629877ad152a2c9def21f8d330d91aa94c5dc75bbb98c10b8b8",
     "https://bcr.bazel.build/modules/xz/5.4.5.bcr.7/MODULE.bazel": "6ad4a612745322cb1b64b971f9de54d1e604810043da14ca5578f963075b5dac",
@@ -701,6 +705,72 @@
           }
         }
       }
+    },
+    "@@windows_support+//windows:extensions.bzl%msvc_runtime": {
+      "general": {
+        "bzlTransitiveDigest": "FSsE0idtl48wsjoaGD908nx56D89INP7AFzHdtjzSR8=",
+        "usagesDigest": "qONmrwcIYYAkMiEfCdwpc/Im6t1/55wa9jzpqRaKLZU=",
+        "recordedInputs": [
+          "REPO_MAPPING:windows_support+,bazel_tools bazel_tools",
+          "ENV:BAZEL_MSVC_RUNTIME_VISUAL_STUDIO_EULA 1"
+        ],
+        "generatedRepoSpecs": {
+          "msvc_runtime": {
+            "repoRuleId": "@@windows_support+//windows/private/extensions:msvc_runtime.bzl%_msvc_runtime_repository",
+            "attributes": {
+              "msvc_version": "14.50.35717",
+              "architectures": [
+                "x64",
+                "arm64"
+              ],
+              "installer_manifest_url": "https://download.visualstudio.microsoft.com/download/pr/fdc37f6e-59f6-4054-838a-b476eeaa6ec3/1d82370739911457e0a2f6be15d8b5f569531b352b2eabb961429eea1e99e356/VisualStudio.vsman",
+              "installer_manifest_integrity": "sha256-qOhU+p8/uurCfXME4pfxZg1xN0ATid61fPeYPzPBb+8="
+            }
+          }
+        },
+        "moduleExtensionMetadata": {
+          "explicitRootModuleDirectDeps": [
+            "msvc_runtime"
+          ],
+          "explicitRootModuleDirectDevDeps": [],
+          "useAllRepos": "NO",
+          "reproducible": false
+        }
+      }
+    },
+    "@@windows_support+//windows:extensions.bzl%windows_sdk": {
+      "general": {
+        "bzlTransitiveDigest": "FSsE0idtl48wsjoaGD908nx56D89INP7AFzHdtjzSR8=",
+        "usagesDigest": "N/eI8OI4b+nb5wxDr/26t/XFlGhOBRdbihyrJmvQgdU=",
+        "recordedInputs": [
+          "REPO_MAPPING:windows_support+,bazel_tools bazel_tools"
+        ],
+        "generatedRepoSpecs": {
+          "windows_sdk": {
+            "repoRuleId": "@@windows_support+//windows/private/extensions:windows_sdk.bzl%_windows_sdk_repository",
+            "attributes": {
+              "windows_sdk_version": "10.0.26100.7705",
+              "windows_sdk_integrity": {
+                "Microsoft.Windows.SDK.CPP": "sha256-/0VWYL7gcadEcVqWZWZvopwHaBV509gVlZqe7FpVZCQ=",
+                "Microsoft.Windows.SDK.CPP.x64": "sha256-rWzpD/lAEGmdKVSLPCseUsieuBFD4hmRVdmlw4ABtSs=",
+                "Microsoft.Windows.SDK.CPP.arm64": "sha256-A7wMA9Q5zvhQdLvNQl+dXTptO0Z5Z6zSHaO6bf7q+mc="
+              },
+              "architectures": [
+                "x64",
+                "arm64"
+              ]
+            }
+          }
+        },
+        "moduleExtensionMetadata": {
+          "explicitRootModuleDirectDeps": [
+            "windows_sdk"
+          ],
+          "explicitRootModuleDirectDevDeps": [],
+          "useAllRepos": "NO",
+          "reproducible": false
+        }
+      }
     }
   },
   "facts": {
@@ -866,6 +936,17 @@
           "go1.25.0.windows-arm64.zip",
           "27bab004c72b3d7bd05a69b6ec0fc54a309b4b78cc569dd963d8b3ec28bfdb8c"
         ]
+      }
+    },
+    "@@windows_support+//windows:extensions.bzl%msvc_runtime": {
+      "visual_studio_installer_manifest_v1": {
+        "integrity": "sha256-qOhU+p8/uurCfXME4pfxZg1xN0ATid61fPeYPzPBb+8=",
+        "request": {
+          "visual_studio_channel_url": "https://aka.ms/vs/stable/channel",
+          "visual_studio_installer_manifest_integrity": "sha256-qOhU+p8/uurCfXME4pfxZg1xN0ATid61fPeYPzPBb+8=",
+          "visual_studio_installer_manifest_url": "https://download.visualstudio.microsoft.com/download/pr/fdc37f6e-59f6-4054-838a-b476eeaa6ec3/1d82370739911457e0a2f6be15d8b5f569531b352b2eabb961429eea1e99e356/VisualStudio.vsman"
+        },
+        "url": "https://download.visualstudio.microsoft.com/download/pr/fdc37f6e-59f6-4054-838a-b476eeaa6ec3/1d82370739911457e0a2f6be15d8b5f569531b352b2eabb961429eea1e99e356/VisualStudio.vsman"
       }
     }
   }
