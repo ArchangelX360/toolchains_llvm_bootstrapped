@@ -116,8 +116,25 @@ cc_args(
         "-O0",
 
         # Debug symbols.
-        "-g",
-    ],
+    ] + select({
+        "@platforms//os:windows": [
+            "-gcodeview",
+        ],
+        "//conditions:default": [
+            "-g",
+        ],
+    }),
+)
+
+cc_feature(
+    name = "generate_pdb_file",
+    args = select({
+        "@platforms//os:windows": [
+            "//toolchain/args/windows:generate_pdb_file",
+        ],
+        "//conditions:default": [],
+    }),
+    feature_name = "generate_pdb_file",
 )
 
 # Use a stub feature so we can properly control flag ordering.
@@ -127,6 +144,12 @@ cc_feature(
         ":dbg_compile_flags",
     ],
     feature_name = "_underlying_dbg",
+    implies = select({
+        "@platforms//os:windows": [
+            ":generate_pdb_file",
+        ],
+        "//conditions:default": [],
+    }),
     requires_any_of = [":dbg_stub"],
 )
 
@@ -163,6 +186,7 @@ cc_feature_set(
         ":opt_stub",
         ":dbg",
         ":dbg_stub",
+        ":generate_pdb_file",
         ":static_link_cpp_runtimes",
         ":parse_headers",
     ],

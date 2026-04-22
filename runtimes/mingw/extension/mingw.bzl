@@ -14,7 +14,7 @@ def _mingw_extension_impl(module_ctx):
         strip_prefix = "mingw-w64-13.0.0",
         build_file = "//runtimes/mingw:mingw.BUILD.bazel",
         patches = [
-            "//runtimes/mingw/patches:remove-fpreset-from-msvcrt-def.patch",
+            # "//runtimes/mingw/patches:remove-fpreset-from-msvcrt-def.patch",
         ],
         patch_args = ["-p1"],
     )

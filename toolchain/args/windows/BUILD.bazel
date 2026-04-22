@@ -61,3 +61,15 @@ cc_args(
         "mingw_import_library_search_path": "//runtimes/mingw:mingw_import_libraries_directory",
     },
 )
+
+cc_args(
+    name = "generate_pdb_file",
+    actions = [
+        "@rules_cc//cc/toolchains/actions:link_actions",
+    ],
+    args = [
+        # Let ld.lld pick the default sibling path (<binary>.pdb), which matches
+        # the path rules_cc declares for the generate_pdb_file feature.
+        "-Wl,--pdb=",
+    ],
+)

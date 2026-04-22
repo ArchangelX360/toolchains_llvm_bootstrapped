@@ -3,7 +3,11 @@ load("@tar.bzl", "mtree_mutate", "mtree_spec", "tar")
 load("//prebuilt:mtree.bzl", "mtree")
 load("//tools:defs.bzl", "TOOLCHAIN_BINARIES")
 
-def llvm_release(name, bin_suffix = ""):
+def llvm_release(
+        name,
+        bin_suffix = "",
+        binary_target = "@llvm-project//llvm:llvm.stripped",
+        pdb_target = None):
     mtree_spec(
         name = name + "_builtin_headers_mtree_",
         srcs = [
@@ -21,10 +25,19 @@ def llvm_release(name, bin_suffix = ""):
     )
 
     bin_files = {
-        "@llvm-project//llvm:llvm.stripped": "bin/llvm" + bin_suffix,
+        binary_target: "bin/llvm" + bin_suffix,
         "@llvm-project//compiler-rt:asan_ignorelist": "lib/clang/{llvm_major}/share/asan_ignorelist.txt",
         "@llvm-project//compiler-rt:msan_ignorelist": "lib/clang/{llvm_major}/share/msan_ignorelist.txt",
     }
+
+    if pdb_target:
+        native.filegroup(
+            name = name + "_pdb_file",
+            srcs = [pdb_target],
+            output_group = "pdb_file",
+            tags = ["manual"],
+        )
+        bin_files[name + "_pdb_file"] = "bin/llvm.pdb"
 
     mtree(
         name = name + "_bins_mtree",

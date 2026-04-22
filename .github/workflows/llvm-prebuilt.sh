@@ -41,18 +41,13 @@ bazel \
   --config=prebuilt \
   --config=remote \
   --remote_download_outputs=toplevel \
-  //prebuilt/llvm:all
+  //prebuilt/llvm:for_windows_amd64
 
 rm -rf release
 mkdir -p release
 
 PLATFORMS=(
-  linux_amd64_musl linux-amd64-musl llvm_release
-  linux_arm64_musl linux-arm64-musl llvm_release
-  macos_arm64      darwin-arm64     llvm_release
-  macos_amd64      darwin-amd64     llvm_release
   windows_amd64    windows-amd64    windows_llvm_release
-  windows_arm64    windows-arm64    windows_llvm_release
 )
 
 for ((i=0; i<${#PLATFORMS[@]}; i+=3)); do
@@ -60,7 +55,7 @@ for ((i=0; i<${#PLATFORMS[@]}; i+=3)); do
   archive_suffix=${PLATFORMS[i+1]}
   target_name=${PLATFORMS[i+2]}
 
-  src="bazel-out/${platform_dir}-opt/bin/prebuilt/llvm/${target_name}.tar.zst"
+  src="bazel-out/${platform_dir}-dbg/bin/prebuilt/llvm/${target_name}.tar.zst"
   dest="release/llvm-toolchain-minimal-${LLVM_VERSION}-${archive_suffix}.tar.zst"
 
   if [[ ! -f "${src}" ]]; then
