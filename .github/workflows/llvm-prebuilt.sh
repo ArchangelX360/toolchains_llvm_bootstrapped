@@ -55,7 +55,7 @@ for ((i=0; i<${#PLATFORMS[@]}; i+=3)); do
   archive_suffix=${PLATFORMS[i+1]}
   target_name=${PLATFORMS[i+2]}
 
-  src="bazel-out/${platform_dir}-opt/bin/prebuilt/llvm/${target_name}.tar.zst"
+  src="bazel-out/${platform_dir}-dbg/bin/prebuilt/llvm/${target_name}.tar.zst"
   dest="release/llvm-toolchain-minimal-${LLVM_VERSION}-${archive_suffix}.tar.zst"
 
   if [[ ! -f "${src}" ]]; then
