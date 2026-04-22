@@ -41,7 +41,7 @@ bazel \
   --config=prebuilt \
   --config=remote \
   --remote_download_outputs=toplevel \
-  //prebuilt/llvm:all
+  //prebuilt/llvm:for_windows_amd64
 
 rm -rf release
 mkdir -p release

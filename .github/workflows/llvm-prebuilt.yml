@@ -39,21 +39,3 @@ jobs:
         with:
           name: llvm-toolchain-minimal-${{ steps.build_and_package.outputs.version }}
           path: release/*
-
-      - name: Publish release
-        # TODO(cerisier): Revert me to @v2 once they fixed make_latest broken behavior starting at v2.5.0.
-        uses: softprops/action-gh-release@v2.4.2
-        with:
-          tag_name: ${{ github.ref_name }}
-          target_commitish: ${{ github.sha }}
-          name: LLVM prebuilts ${{ steps.build_and_package.outputs.version }}
-          files: |
-            release/*.tar.zst
-            release/SHA256.txt
-          overwrite_files: false
-          draft: false
-          prerelease: false
-          generate_release_notes: false
-          make_latest: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
