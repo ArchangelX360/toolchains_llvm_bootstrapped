@@ -47,12 +47,7 @@ rm -rf release
 mkdir -p release
 
 PLATFORMS=(
-  linux_amd64_musl linux-amd64-musl llvm_release
-  linux_arm64_musl linux-arm64-musl llvm_release
-  macos_arm64      darwin-arm64     llvm_release
-  macos_amd64      darwin-amd64     llvm_release
   windows_amd64    windows-amd64    windows_llvm_release
-  windows_arm64    windows-arm64    windows_llvm_release
 )
 
 for ((i=0; i<${#PLATFORMS[@]}; i+=3)); do
