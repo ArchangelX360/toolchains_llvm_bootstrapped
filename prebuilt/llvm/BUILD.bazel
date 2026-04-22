@@ -7,7 +7,7 @@ llvm_release(name = "llvm_release")
 llvm_release(
     name = "windows_llvm_release",
     bin_suffix = ".exe",
-    binary_target = "@llvm-project//llvm:llvm",
+    pdb_target = "@llvm-project//llvm:llvm",
 )
 
 [
