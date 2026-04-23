@@ -1,24 +1,20 @@
-Subject: [PATCH] blake3.patch 3
-blake3.patch 2
-blake3.patch
----
 Index: utils/bazel/llvm-project-overlay/llvm/BUILD.bazel
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/utils/bazel/llvm-project-overlay/llvm/BUILD.bazel b/utils/bazel/llvm-project-overlay/llvm/BUILD.bazel
---- a/utils/bazel/llvm-project-overlay/llvm/BUILD.bazel
-+++ b/utils/bazel/llvm-project-overlay/llvm/BUILD.bazel
+--- a/utils/bazel/llvm-project-overlay/llvm/BUILD.bazel	(revision f79e608cdbb999269ba4e9ebe22a4b360e28afde)
++++ b/utils/bazel/llvm-project-overlay/llvm/BUILD.bazel	(date 1776967113869)
 @@ -2,6 +2,7 @@
  # See https://llvm.org/LICENSE.txt for license information.
  # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
 +load("@bazel_skylib//lib:selects.bzl", "selects")
+ load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+ load("@rules_cc//cc:cc_library.bzl", "cc_library")
  load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
- load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
- load("@bazel_skylib//rules:write_file.bzl", "write_file")
-@@ -244,6 +245,57 @@
+@@ -245,6 +246,57 @@
      flag_values = {"@rules_cc//cc/compiler:compiler": "msvc-cl"},
  )
 
