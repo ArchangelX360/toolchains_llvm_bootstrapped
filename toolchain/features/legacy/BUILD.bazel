@@ -9,7 +9,7 @@ cc_args(
         "@rules_cc//cc/toolchains/actions:cpp_compile_actions",
     ],
     args = select({
-        "@llvm//constraints/abi:msvc": [
+        "@llvm//constraints/windows/abi:msvc": [
             "/clang:-std=c++17",
         ],
         "//conditions:default": [
@@ -37,7 +37,7 @@ cc_args(
         # escape sequences if --nocolor is specified.
         "-fcolor-diagnostics",
     ] + select({
-        "@llvm//constraints/abi:msvc": [
+        "@llvm//constraints/windows/abi:msvc": [
         ],
         "//conditions:default": [
             "-fstack-protector",
@@ -180,14 +180,14 @@ cc_feature_set(
         "@rules_cc//cc/toolchains/args/compiler_input_flags:feature",
         "@rules_cc//cc/toolchains/args/compiler_output_flags:feature",
     ] + select({
-        "@llvm//constraints/abi:msvc": [
+        "@llvm//constraints/windows/abi:msvc": [
             ":archiver_flags",
         ],
         "//conditions:default": [
             "@rules_cc//cc/toolchains/args/archiver_flags:feature",
         ],
     }) + select({
-        "@llvm//constraints/abi:msvc": [],
+        "@llvm//constraints/windows/abi:msvc": [],
         "//conditions:default": [
             "@rules_cc//cc/toolchains/args/runtime_library_search_directories:feature",
         ],

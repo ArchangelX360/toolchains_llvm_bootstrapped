@@ -773,7 +773,7 @@ cc_args(
     # We want to disable everything except builtin headers since they are
     # provided as part of the compiler toolchain repository.
     args = select({
-        "@llvm//constraints/abi:msvc": [
+        "@llvm//constraints/windows/abi:msvc": [
             "/clang:-nostdlibinc",
         ],
         "//conditions:default": [

@@ -281,15 +281,15 @@ cc_args_list(
 cc_args_list(
     name = "windows_toolchain_args",
     args = select({
-        "@llvm//constraints/abi:gnu": [
+        "@llvm//constraints/windows/abi:gnu": [
             "//toolchain/args:libcxx_headers_include_search_paths",
             "//toolchain/args/windows:mingw_headers_include_search_paths",
         ],
-        "@llvm//constraints/abi:gnullvm": [
+        "@llvm//constraints/windows/abi:gnullvm": [
             "//toolchain/args:libcxx_headers_include_search_paths",
             "//toolchain/args/windows:mingw_headers_include_search_paths",
         ],
-        "@llvm//constraints/abi:msvc": [
+        "@llvm//constraints/windows/abi:msvc": [
             "//toolchain/args/windows:msvc_headers_include_search_paths",
         ],
         "//conditions:default": [],

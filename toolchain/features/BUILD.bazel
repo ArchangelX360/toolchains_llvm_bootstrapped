@@ -54,7 +54,7 @@ cc_args(
         "@platforms//os:windows": [],
         "//conditions:default": ["-Wl,--icf=safe"],
     }) + select({
-        "@llvm//constraints/abi:msvc": [
+        "@llvm//constraints/windows/abi:msvc": [
             "/OPT:REF,ICF",
         ],
         "//conditions:default": [],

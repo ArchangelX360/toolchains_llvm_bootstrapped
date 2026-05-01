@@ -1,5 +1,5 @@
-load("//constraints/abi:abis.bzl", "ABIS", "DEFAULT_ABI")
 load("//constraints/libc:libc_versions.bzl", "LIBCS", "default_libc")
+load("//constraints/windows/abi:abis.bzl", "ABIS", "DEFAULT_ABI")
 load("//platforms:common.bzl", "ABI_SUPPORTED_TARGETS", "ARCH_ALIASES", "LIBC_SUPPORTED_TARGETS", "SUPPORTED_TARGETS")
 
 def declare_platforms():
@@ -29,7 +29,7 @@ def declare_platforms():
             #
             # Users can still create their own platforms without an abi
             # constraint if they want to.
-            constraints.append("//constraints/abi:{}".format(DEFAULT_ABI))
+            constraints.append("//constraints/windows/abi:{}".format(DEFAULT_ABI))
 
         native.platform(
             name = "{}_{}".format(target_os, target_cpu),
@@ -79,7 +79,7 @@ def declare_platforms_abi_aware():
                 constraint_values = [
                     "@platforms//cpu:{}".format(target_cpu),
                     "@platforms//os:{}".format(target_os),
-                    "//constraints/abi:{}".format(abi),
+                    "//constraints/windows/abi:{}".format(abi),
                 ],
                 visibility = ["//visibility:public"],
             )
@@ -90,7 +90,7 @@ def declare_platforms_abi_aware():
                     constraint_values = [
                         "@platforms//cpu:{}".format(target_cpu),
                         "@platforms//os:{}".format(target_os),
-                        "//constraints/abi:{}".format(abi),
+                        "//constraints/windows/abi:{}".format(abi),
                     ],
                     visibility = ["//visibility:public"],
                 )

@@ -1,6 +1,6 @@
 load("@bazel_skylib//lib:selects.bzl", "selects")
-load("//constraints/abi:abis.bzl", "ABIS")
 load("//constraints/libc:libc_versions.bzl", "GLIBCS", "LIBCS")
+load("//constraints/windows/abi:abis.bzl", "ABIS")
 load("//platforms:common.bzl", "ABI_SUPPORTED_TARGETS", "LIBC_SUPPORTED_TARGETS", "SUPPORTED_TARGETS")
 
 def declare_config_settings():
@@ -80,7 +80,7 @@ def declare_config_settings_abi_aware():
                 constraint_values = [
                     "@platforms//cpu:{}".format(target_cpu),
                     "@platforms//os:{}".format(target_os),
-                    "//constraints/abi:{}".format(abi),
+                    "//constraints/windows/abi:{}".format(abi),
                 ],
                 visibility = ["//visibility:public"],
             )
@@ -88,7 +88,7 @@ def declare_config_settings_abi_aware():
         native.config_setting(
             name = "abi_{}".format(abi),
             constraint_values = [
-                "//constraints/abi:{}".format(abi),
+                "//constraints/windows/abi:{}".format(abi),
             ],
             visibility = ["//visibility:public"],
         )

@@ -11,7 +11,7 @@ def cc_toolchain(name, tool_map, module_map = None, extra_args = []):
             "@llvm//toolchain/features:archive_param_file",
             "@llvm//toolchain/features:parse_headers",
         ] + select({
-            "@llvm//constraints/abi:msvc": [
+            "@llvm//constraints/windows/abi:msvc": [
                 "@llvm//toolchain/features:targets_windows",
                 "@llvm//toolchain/features:supports_interface_shared_libraries",
                 "@llvm//toolchain/features:has_configured_linker_path",
@@ -87,7 +87,7 @@ def cc_toolchain(name, tool_map, module_map = None, extra_args = []):
             # Always last (contains user_compile_flags and user_link_flags who should apply last).
             "@llvm//toolchain/features/legacy:experimental_replace_legacy_action_config_features",
         ] + select({
-            "@llvm//constraints/abi:msvc": [
+            "@llvm//constraints/windows/abi:msvc": [
                 "@llvm//toolchain/features:targets_windows",
                 "@llvm//toolchain/features:supports_interface_shared_libraries",
                 "@llvm//toolchain/features:has_configured_linker_path",
@@ -163,7 +163,7 @@ def cc_toolchain(name, tool_map, module_map = None, extra_args = []):
             "//conditions:default": "@llvm//runtimes:dynamic_runtime_lib",
         }),
         compiler = select({
-            "@llvm//constraints/abi:msvc": "clang-cl",
+            "@llvm//constraints/windows/abi:msvc": "clang-cl",
             "//conditions:default": "clang",
         }),
     )
