@@ -194,6 +194,28 @@ cc_feature(
     feature_name = "msvc_implib_flags",
 )
 
+cc_args(
+    name = "parse_showincludes_flags",
+    actions = [
+        "@rules_cc//cc/toolchains/actions:preprocess_assemble",
+        "@rules_cc//cc/toolchains/actions:c_compile",
+        "@rules_cc//cc/toolchains/actions:linkstamp_compile",
+        "@rules_cc//cc/toolchains/actions:cpp_compile",
+        "@rules_cc//cc/toolchains/actions:cpp_module_compile",
+        "@rules_cc//cc/toolchains/actions:cpp_header_parsing",
+        "@rules_cc//cc/toolchains/actions:cpp_module_deps_scanning",
+        "@rules_cc//cc/toolchains/actions:cpp20_module_compile",
+    ],
+    args = ["/showIncludes"],
+    env = {"VSLANG": "1033"},
+)
+
+cc_feature(
+    name = "parse_showincludes",
+    args = [":parse_showincludes_flags"],
+    feature_name = "parse_showincludes",
+)
+
 cc_feature(
     name = "parse_headers_wrapper",
     args = [
